@@ -34,13 +34,12 @@ rl.on("close", () => {
     value.change = (value.popu15 / value.popu10) * 100;
   }
   const rankingArray = Array.from(map).sort(
-    (pair1, pair2) => pair2[1].change - pair1[1].change
+    (pair1, pair2) => pair1[1].change - pair2[1].change
   );
-  const rankingStrings = rankingArray.map(
-    pair =>
-      `${pair[0]}: ${pair[1].popu10} => ${pair[1].popu15} 変化率: ${
-        pair[1].change
-      }`
-  );
+  const rankingStrings = rankingArray.map((pair, indx) => {
+    return `${indx + 1}位 ${pair[0]}: ${pair[1].popu10} => ${
+      pair[1].popu15
+    } 変化率: ${pair[1].change}`;
+  });
   console.log(rankingStrings);
 });
